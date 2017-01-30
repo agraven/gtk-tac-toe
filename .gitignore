@@ -50,3 +50,6 @@ configure.scan
 stamp-h1
 Makefile
 Makefile.in
+
+# GLib
+resources.c

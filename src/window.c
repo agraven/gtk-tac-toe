@@ -41,14 +41,28 @@ void button_set_label_to_field_value(field_value* value, GtkButton* button) {
 			gtk_button_set_label(button, LABEL_CIRCLE);
 			break;
 		default:
-			fprintf(stderr, PACKAGE ": ERROR: Unrecognized field value");
+			fprintf(stderr, PACKAGE ": ERROR: Unrecognized field value\n");
+	}
+}
+
+void update_player_label(GtkLabel* label, active_player* player) {
+	switch (*player) {
+		case PLAYER_CROSS:
+			gtk_label_set_text(label, "Aktiv Spiller: X");
+			break;
+		case PLAYER_CIRCLE:
+			gtk_label_set_text(label, "Aktiv Spiller: O");
+			break;
+		default:
+			gtk_label_set_text(label, "Aktiv Spiller: ukendt");
 	}
 }
 
 // TODO: find a more sensible name for this function
-void update_from_pressed_button(field_value* value, active_player* player, GtkButton* button) {
-	game_state_toggle(value, player);
-	button_set_label_to_field_value(value, button);
+void update_from_pressed_button(field_value* field, active_player* player, GtkButton* button, MainAppWindowPrivate* private) {
+	game_state_toggle(field, player);
+	button_set_label_to_field_value(field, button);
+	update_player_label(GTK_LABEL(private->player_label), player);
 }
 
 static void activate_close(GSimpleAction* action, GVariant* parameter, gpointer win) {
@@ -57,47 +71,47 @@ static void activate_close(GSimpleAction* action, GVariant* parameter, gpointer 
 
 static void activate_a1pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[0][0], GTK_BUTTON(private->a1_button));
+	update_from_pressed_button(&game_state[0][0], &game_player, GTK_BUTTON(private->a1_button), private);
 }
 
 static void activate_b1pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[1][0], GTK_BUTTON(private->b1_button));
+	update_from_pressed_button(&game_state[1][0], &game_player, GTK_BUTTON(private->b1_button), private);
 }
 
 static void activate_c1pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[2][0], GTK_BUTTON(private->c1_button));
+	update_from_pressed_button(&game_state[2][0], &game_player, GTK_BUTTON(private->c1_button), private);
 }
 
 static void activate_a2pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[0][1], GTK_BUTTON(private->a2_button));
+	update_from_pressed_button(&game_state[0][1], &game_player, GTK_BUTTON(private->a2_button), private);
 }
 
 static void activate_b2pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[1][1], GTK_BUTTON(private->b2_button));
+	update_from_pressed_button(&game_state[1][1], &game_player, GTK_BUTTON(private->b2_button), private);
 }
 
 static void activate_c2pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[2][1], GTK_BUTTON(private->c2_button));
+	update_from_pressed_button(&game_state[2][1], &game_player, GTK_BUTTON(private->c2_button), private);
 }
 
 static void activate_a3pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[0][2], GTK_BUTTON(private->a3_button));
+	update_from_pressed_button(&game_state[0][2], &game_player, GTK_BUTTON(private->a3_button), private);
 }
 
 static void activate_b3pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[1][2], GTK_BUTTON(private->b3_button));
+	update_from_pressed_button(&game_state[1][2], &game_player, GTK_BUTTON(private->b3_button), private);
 }
 
 static void activate_c3pressed(GSimpleAction* action, GVariant* parameter, gpointer win) {
 	MainAppWindowPrivate* private = main_app_window_get_instance_private(MAIN_APP_WINDOW(win));
-	button_set_label_to_field_value(&game_state[2][2], GTK_BUTTON(private->c3_button));
+	update_from_pressed_button(&game_state[2][2], &game_player, GTK_BUTTON(private->c3_button), private);
 }
 
 static GActionEntry win_actions[] = {
@@ -118,6 +132,8 @@ static void main_app_window_init (MainAppWindow *win) {
 	gtk_widget_init_template(GTK_WIDGET(win));
 
 	g_action_map_add_action_entries(G_ACTION_MAP(win), win_actions, G_N_ELEMENTS(win_actions), win);
+	MainAppWindowPrivate* private = main_app_window_get_instance_private(win);
+	update_player_label(GTK_LABEL(private->player_label), &game_player);
 }
 static void main_app_window_class_init (MainAppWindowClass *class) {
 	gtk_widget_class_set_template_from_resource(GTK_WIDGET_CLASS(class), "/net/agraven/test/main.ui");

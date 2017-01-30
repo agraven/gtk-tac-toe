@@ -31,19 +31,29 @@ Author: Amanda Graven
   <template class="MainAppWindow" parent="GtkApplicationWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">GTK Tac Toe</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="default_width">400</property>
+    <property name="default_height">400</property>
+    <property name="type_hint">dialog</property>
+    <property name="gravity">center</property>
     <child>
       <object class="GtkGrid" id="main_grid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="column_homogeneous">True</property>
         <child>
           <object class="GtkButton" id="a3_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.a3pressed</property>
           </object>
           <packing>
@@ -54,11 +64,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="b3_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.b3pressed</property>
           </object>
           <packing>
@@ -69,11 +79,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="c3_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.c3pressed</property>
           </object>
           <packing>
@@ -84,11 +94,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="b2_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.b2pressed</property>
           </object>
           <packing>
@@ -99,11 +109,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="c2_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">False</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.c2pressed</property>
           </object>
           <packing>
@@ -114,11 +124,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="a2_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.a2pressed</property>
           </object>
           <packing>
@@ -129,11 +139,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="a1_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.a1pressed</property>
           </object>
           <packing>
@@ -144,11 +154,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="b1_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.b1pressed</property>
           </object>
           <packing>
@@ -159,11 +169,11 @@ Author: Amanda Graven
         <child>
           <object class="GtkButton" id="c1_button">
             <property name="label" translatable="yes"> </property>
+            <property name="width_request">100</property>
+            <property name="height_request">100</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="action_name">win.c1pressed</property>
           </object>
           <packing>
