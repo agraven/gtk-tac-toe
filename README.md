@@ -1,19 +1,15 @@
-# SSHFS Connection Tool
-A GTK-3 based front-end for the sshfs tool written in C. The application is currently in very early stages, and has various issues, like:
-* Missing features
-* Features that are implemented in unholy manners (primarily string manipulation)
-* Lack of polish
-* Etc.
+# GTK Tac Toe
+A GTK-3 based implementation of the game Tic Tac Toe written in C.
 
 Here is a screenshot of the application:
-![screenshot](http://i.imgur.com/Bzy8ygm.png "Screenshot")
+
+![screenshot](http://i.imgur.com/OC127Za.png "Screenshot")
 
 The theme used is [Arc-Dark](https://github.com/horst3180/Arc-theme)
 
 ## Dependencies
 The project depends on the following
-* gtk >= 3.6
-* sshfs
+* gtk >= 3.20
 
 ## Building
 The project is autotools-based, and can be built with the usual:
