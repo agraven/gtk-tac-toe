@@ -1,0 +1,52 @@
+# Backup files
+*.bak
+*.swp
+*~
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+bin/*
+*.exe
+*.out
+*.app
+
+# Autotools
+aclocal.m4
+autom4te.cache/
+autoscan-*
+build-aux/
+config.log
+config.h
+config.h.in
+config.status
+configure
+configure.scan
+.deps/
+.dirstamp
+stamp-h1
+Makefile
+Makefile.in
