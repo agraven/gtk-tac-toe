@@ -58,9 +58,9 @@ game_result game_test_winner(field_value fields[3][3]) {
 	}
 
 	// Test diagonally
+	cross_hits = 0;
+	circle_hits = 0;
 	for (int i = 0; i < 3; i++ ) {
-		cross_hits = 0;
-		circle_hits = 0;
 		if (fields[i][i] == VALUE_CROSS) cross_hits++;
 		if (fields[i][i] == VALUE_CIRCLE) circle_hits++;
 		if (cross_hits >= 3) return RESULT_CROSS;
@@ -68,11 +68,11 @@ game_result game_test_winner(field_value fields[3][3]) {
 	}
 
 	// Test reversed diagonally
+	cross_hits = 0;
+	circle_hits = 0;
 	for (int i = 0; i < 3; i++ ) {
-		cross_hits = 0;
-		circle_hits = 0;
-		if (fields[3-i][i] == VALUE_CROSS) cross_hits++;
-		if (fields[3-i][i] == VALUE_CIRCLE) circle_hits++;
+		if (fields[2-i][i] == VALUE_CROSS) cross_hits++;
+		if (fields[2-i][i] == VALUE_CIRCLE) circle_hits++;
 		if (cross_hits >= 3) return RESULT_CROSS;
 		if (circle_hits >= 3) return RESULT_CIRCLE;
 	}

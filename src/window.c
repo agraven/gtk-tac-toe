@@ -11,6 +11,9 @@
 #define LABEL_NONE " "
 #define LABEL_CROSS "X"
 #define LABEL_CIRCLE "O"
+GtkWidget* cross_image;
+GtkWidget* circle_image;
+
 struct _MainAppWindow { GtkApplicationWindow parent; };
 struct _MainAppWindowClass { GtkApplicationWindowClass parent_class; };
 typedef struct _MainAppWindowPrivate MainAppWindowPrivate;
@@ -32,13 +35,13 @@ G_DEFINE_TYPE_WITH_PRIVATE(MainAppWindow, main_app_window, GTK_TYPE_APPLICATION_
 void button_set_label_to_field_value(field_value* value, GtkButton* button) {
 	switch (*value) {
 		case VALUE_NONE:
-			gtk_button_set_label(button, LABEL_NONE);
+			gtk_button_set_image(button, NULL);
 			break;
 		case VALUE_CROSS:
-			gtk_button_set_label(button, LABEL_CROSS);
+			gtk_button_set_image(button, gtk_image_new_from_resource("/net/agraven/test/cross.svg"));
 			break;
 		case VALUE_CIRCLE:
-			gtk_button_set_label(button, LABEL_CIRCLE);
+			gtk_button_set_image(button, gtk_image_new_from_resource("/net/agraven/test/circle.svg"));
 			break;
 		default:
 			fprintf(stderr, PACKAGE ": ERROR: Unrecognized field value\n");
@@ -208,6 +211,8 @@ static void main_app_window_class_init (MainAppWindowClass *class) {
 	gtk_widget_class_bind_template_child_private(GTK_WIDGET_CLASS(class), MainAppWindow, b3_button);
 	gtk_widget_class_bind_template_child_private(GTK_WIDGET_CLASS(class), MainAppWindow, c3_button);
 	gtk_widget_class_bind_template_child_private(GTK_WIDGET_CLASS(class), MainAppWindow, player_label);
+	circle_image = gtk_image_new_from_resource("/net/agraven/test/circle.svg");
+	cross_image = gtk_image_new_from_resource("/net/agraven/test/cross.svg");
 }
 MainAppWindow* main_app_window_new (MainApp *app) {
 	return g_object_new (MAIN_APP_WINDOW_TYPE, "application", app, NULL);
